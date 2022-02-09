@@ -25,6 +25,7 @@
                         <group>
                             <field name="template_id"/>
                             <field name="partner_id"/>
+                            <field name="partner_type"/>
                             <field name="payment_type"/>
                             <field name="amount" widget="monetary"/>
                             <field name="journal_id" domain="[('type', 'in', ('bank', 'cash'))]"/>

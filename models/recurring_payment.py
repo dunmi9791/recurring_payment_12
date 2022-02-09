@@ -13,6 +13,10 @@ class RecurringPayment(models.Model):
 
     name = fields.Char('Name', readonly=True)
     partner_id = fields.Many2one('res.partner', string="Partner", required=True)
+    partner_type = fields.Selection([
+        ('Customer', 'Customer'),
+        ('Vendor', 'Vendor'),
+    ], string='Partner Type', required=True, default='Customer')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     amount = fields.Monetary(string="Amount", currency_field='currency_id')
@@ -133,6 +137,7 @@ class RecurringPaymentLine(models.Model):
             'date': self.date,
             'ref': self.recurring_payment_id.name,
             'partner_id': self.partner_id.id,
+            'partner_type': self.recurring_payment_id.partner_type,
         }
         payment = self.env['account.payment'].create(vals)
         if payment:
