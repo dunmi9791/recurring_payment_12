@@ -13,7 +13,7 @@ class RecurringPayment(models.Model):
 
     name = fields.Char('Name', readonly=True)
     partner_id = fields.Many2one('res.partner', string="Partner", required=True)
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     amount = fields.Monetary(string="Amount", currency_field='currency_id')
     journal_id = fields.Many2one('account.journal', 'Journal',
