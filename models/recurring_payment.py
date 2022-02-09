@@ -33,6 +33,7 @@ class RecurringPayment(models.Model):
                                         related='template_id.recurring_interval', readonly=True)
     journal_state = fields.Selection(required=True, string='Generate Journal As',
                                      related='template_id.journal_state')
+    payment_method = fields.Many2one('account.payment.method', 'Payment Method')
 
     description = fields.Text('Description')
     line_ids = fields.One2many('recurring.payment.line', 'recurring_payment_id', string='Recurring Lines')

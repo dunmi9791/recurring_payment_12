@@ -35,6 +35,7 @@
                             <field name="date_end" widget="daterange"
                                    options="{'related_start_date': 'date_begin'}"/>
                             <field name="recurring_period"/>
+                            <field name="payment_method"/>
                             <field name="recurring_interval"/>
                             <field name="journal_state"/>
                         </group>
