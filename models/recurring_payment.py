@@ -115,7 +115,7 @@ class RecurringPaymentLine(models.Model):
     amount = fields.Monetary('Amount', required=True, default=0.0)
     date = fields.Date('Date', required=True, default=date.today())
     journal_id = fields.Many2one('account.journal', 'Journal', required=True)
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     payment_id = fields.Many2one('account.payment', string='Payment')
     state = fields.Selection(selection=[('draft', 'Draft'),
