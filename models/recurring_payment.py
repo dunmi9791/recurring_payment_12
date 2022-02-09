@@ -16,7 +16,7 @@ class RecurringPayment(models.Model):
     partner_type = fields.Selection([
         ('customer', 'Customer'),
         ('supplier', 'Vendor'),
-    ], string='Partner Type', required=True, default='Customer')
+    ], string='Partner Type', required=True, default='customer')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     amount = fields.Monetary(string="Amount", currency_field='currency_id')
